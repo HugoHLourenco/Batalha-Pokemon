@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Batalha Pokémon</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/images/favicon-16x16.png">
+</head>
+
+<body>
+    <!-- Cenário -->
+    <img src="/images/draw-a-pixel-pokemon-battle-background.gif" alt="" class="battleGround">
+
+    <!-- Áudio -->
+     <audio id="SoundTrack" src="/sounds/SPBD Cynthia.mp3" autoplay loop class="music"></audio>
+
+    <main>
+        <div id="app">
+
+            <!-- Div do oponent -->
+            <div class="div-oponent">
+                <h1 class="oponent-name">{{oponent.name}}</h1>
+                <div class="oponent-life">{{oponent.life}} / {{oponent.maxLife}}</div>
+                <div class="oponent-life-back">
+                    <div class="oponent-life-bar" :style="{width: oponent.percent + '%', backgroundColor: lifeBarColorOpo}"></div>
+                </div>
+            </div>
+
+            <!-- Imagem do oponent -->
+            <img src="/images/Giratina.gif" alt="" class="oponent-sprite" v-if="oponent.life > 0">
+
+            <!-- Div do pokemon -->
+            <div class="div-pokemon">
+                <h1 class="pokemon-name">{{pokemon.name}}</h1>
+                <div class="pokemon-life"> {{pokemon.life}} / {{pokemon.maxLife}} </div>
+                <div class="pokemon-life-back">
+                    <div class="pokemon-life-bar" :style="{width: pokemon.percent + '%', backgroundColor: lifeBarColorPoke}"></div>
+                </div>
+            </div>
+
+            <!-- Imagem do pokemon -->
+            <img src="/images/Rayquaza.gif" alt="" class="pokemon-sprite" v-if="pokemon.life > 0 && !runn">
+
+            <!-- Menu de ações -->
+            <div class="actions">
+                <button @click="fight()" :disabled="bagStatus || battle > 0 || pokemonBar">FIGHT</button>
+                <button @click="bag()" :disabled="bagStatus || battle > 0 || pokemonBar">BAG</button>
+                <button @click="showPokemonBar()" :disabled="bagStatus || battle > 0">POKEMON</button>
+                <button @click="run()" :disabled="bagStatus || battle > 0 || pokemonBar">RUN</button>
+            </div>
+
+            <!-- Ataques -->
+            <div class="moves" v-if="fighting">
+                <div class="buttons">
+                    <button class="btnAct" :disabled="bagStatus" @click="attack('thunder')" @mouseover="showPP('thunder')" @mouseleave="clearDiv()">Thunder</button>
+                    <button class="btnAct" :disabled="bagStatus" @click="attack('twister')" @mouseover="showPP('twister')" @mouseleave="clearDiv()">Twister</button>
+                    <button class="btnAct" :disabled="bagStatus" @click="attack('crunch')" @mouseover="showPP('crunch')" @mouseleave="clearDiv()">Crunch</button>
+                    <button class="btnAct" :disabled="bagStatus" @click="attack('bulkUp')" @mouseover="showPP('bulkUp')" @mouseleave="clearDiv()">Bulk Up</button>
+                </div>
+            
+                <!-- Div de PP e Type -->
+                <div class="attackStats">
+                    PP: {{moveStats.pp}} <br>
+                    Type/ {{moveStats.type}}
+                </div>
+            </div>
+
+            <!-- Div da Bag -->
+            <div class="bag" v-if="bagStatus">
+                <h1 class="textBag">BAG</h1>
+                <button class="backBag" @click="bag()"><</button>
+                        <div class="subBag" v-if="potion">
+                            <h1>
+                                <img src="/images/maxPotion.png" alt="" class="potionIMG">
+                                <h1 class="maxPotionName">01 x Max Potion</h1>
+                                <button class="btnUse" @click="usePotion()">USE</button>
+                                ______________________________________
+                                <br>
+                                <br>
+                                ______________________________________
+                                <br>
+                                <br>
+                                ______________________________________
+                                <br>
+                                <br>
+                                ______________________________________
+                            </h1>
+                        </div>
+                        <div class="subBag" v-else>
+                            <h1>EMPTY</h1>
+                        </div>
+            </div>
+
+            <!-- console -->
+            <div class="console" v-if ="battle === 1">
+                {{pokemon.name}} used {{pokemon.move}}.
+                <button class="btnNext" @click="next()">></button>
+            </div>
+
+            <div class="console" v-else-if="battle === 3">
+                {{oponent.name}} used {{oponent.move}}.
+                <button class="btnNext" @click="next2()">></button>
+            </div>
+
+            <!-- Vitória -->
+            <div class="console" v-else-if="battle === 6">
+                {{oponent.name}} fainted.
+                <div class="win">
+                    <h1>You Won</h1>
+                    <button class="btnRestart" @click="btnRestart()">Restart</button>
+                </div>
+            </div>
+
+            <!-- Derrota -->
+            <div class="console" v-else-if="battle === 7">
+                {{pokemon.name}} fainted.
+                <div class="lose">
+                    <h1>You Lose</h1>
+                    <button class="btnRestart" @click="btnRestart()">Restart</button>
+                </div>
+            </div>
+            
+            <!-- Run -->
+            <div class="console" v-if="runn">
+                Got away safety!
+                <button class="btnNext" @click="btnRestart()">></button>
+            </div>
+
+            <!-- Pokemons bar -->
+            <div class="console" v-if="pokemonBar">
+                You don't have other Pokemons
+                <button class="btnNext" @click="showPokemonBar()">></button>
+            </div>
+        </div>
+    </main>
+
+
+</body>
+
+</html>
+
+<!-- JS -->
+<script src="/js/index.js"></script>
+
+<!-- Método que abaixa o volume -->
+<script>
+    window.onload = () => {
+      var audio = document.getElementById("SoundTrack")
+      audio.volume = 0.2
+    }
+</script>

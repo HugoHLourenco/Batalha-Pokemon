@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&display=swap'); 
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    font-family: Oxanium;
+}
+
+.battleGround {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+#app {
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Área do oponent ---------------------------------------------------------------------*/
+.div-oponent {
+    margin: 2px;
+    padding: 5px;
+    border-radius: 5px;
+    width: 32%;
+    justify-content: end;
+    position: absolute;
+    top: 0;
+    height: 45%;   
+    
+}
+
+.oponent-life-back {
+    padding: 2px;
+    height: 40px;
+    background-color: #555;
+    border-radius: 10px;
+    border: black solid 2px;
+    width: 99%;
+    position: absolute;
+    top: 14.5%;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.oponent-life-bar {
+    height: 27px;
+    border-radius: 10px;
+    border: black solid 2px;
+    position: absolute;
+    top: 14.5%;
+    transition: width 0.3s ease;
+}
+
+.oponent-life {
+    padding: 3px;
+    background-color: #888;
+    position: absolute;
+    top: 8px;
+    right: -7px;
+    font-weight: 700;
+    font-size: 25px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    border: black solid 2px;
+    width: 40%;
+}
+
+.oponent-name {
+    background-color: #999;
+    position: absolute;
+    top: -15px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: #050909 solid 2px;
+    width: 50%;
+}
+
+.oponent-sprite {
+    height: 55%;
+    border-radius: 8px;
+    position: absolute;
+    top: 1%;
+    right: 15%;
+}
+
+/* Área do pokemon -------------------------------------------------------------------- */
+.div-pokemon {
+    width: 31%;
+    position: absolute;
+    bottom: 19%;
+    right: 1%;
+    height: 110px;
+}
+
+.pokemon-name {
+    position: absolute;
+    top: -10%;
+    background-color: #999;
+    font-weight: 700;
+    border-radius: 5px;
+    border: #050909 solid 2px;
+    width: 50%;
+}
+
+.pokemon-life {
+    padding: 3px;
+    background-color: #888;
+    position: absolute;
+    top: 11.5%;
+    right: 0px;
+    font-weight: 700;
+    font-size: 25px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    border: black solid 2px;
+    width: 40%;
+}
+
+.pokemon-life-bar {
+    height: 33px;
+    border-radius: 10px;
+    border: black solid 2px;
+    width: 99%;
+    transition: width 0.3s ease;
+}
+
+.pokemon-life-back {
+    padding: 2px;
+    height: 40px;
+    background-color: #555;
+    border-radius: 10px;
+    border: black solid 2px;
+    width: 98%;
+    position: absolute;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.pokemon-sprite {
+    position: absolute;
+    bottom: 0;
+    left: 1%;
+    height: 85%;
+}
+
+/* Botões ----------------------------------------------------------------------------- */
+.actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+    width: 31%;
+    height: 17%;
+}
+
+button {
+    margin: 2px;
+    font-weight: 700;
+    font-size: 25px;
+    padding: 10px;
+    border: black solid 1px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: slategray;
+}
+
+button:active {
+    transform: translateY(3px);
+    box-shadow: #050909 0px -2px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 50%;
+    position: absolute;
+    left: 2%;
+    top: 6%;
+    height: 87%;
+}
+
+.btnAct {
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.btnNext {
+    position: absolute;
+    right: 1%;
+    bottom: 5%;
+    width: 10%;
+}
+
+.btnRestart {
+    position: absolute;
+    right: 2%;
+    bottom: 5%;
+}
+
+
+/* OutPut / console ------------------------------------------------------------------ */
+.moves {
+    background-color: #232c3a;
+    width: 64%;
+    height: 29%;
+    position: absolute;
+    bottom: 2%;
+    left: 2%;
+    border-radius: 10px;
+    box-shadow: #070908 5px 5px 20px 10px;
+}
+
+.console {
+    background-color: #232c3a;
+    width: 64%;
+    height: 29%;
+    position: absolute;
+    bottom: 2%;
+    left: 2%;
+    border-radius: 10px;
+    box-shadow: #070908 5px 5px 20px 10px;
+    font-weight: 700;
+    font-size: 40px;
+    justify-content: center;
+    align-content: center;
+    color: aliceblue;
+}
+
+.win {
+    background-color: #232c3a;
+    position: fixed;
+    left: 30%;
+    top: 25%;
+    width: 40%;
+    height: 40%;
+    color:#326d44;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: #070908 5px 5px 20px 10px;
+}
+
+.lose {
+    background-color: #232c3a;
+    position: fixed;
+    left: 30%;
+    top: 25%;
+    width: 40%;
+    height: 40%;
+    color:#5e2210;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: #070908 5px 5px 20px 10px;
+}
+
+.attackStats {
+    width: 45%;
+    height: 85%;
+    position: absolute;
+    right: 1%;
+    top: 7%;
+    background-color: #fff;
+    border-radius: 10px;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Bag -------------------------------------------------------------------------------------- */
+.bag {
+    background-color: #232c3a;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    box-shadow: #070908 5px 5px 20px 10px;
+    border-radius: 10px;
+}
+
+.subBag {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background-color: #0f3050;
+    border-radius: 10px;
+    font-size: 40px;
+    text-align: center;
+    box-shadow: #070908 5px 5px 20px 5px;
+}
+
+.textBag{
+    position: absolute;
+    left: 15%;
+    top: -3%;
+    font-size: 50px;
+    color: aliceblue;
+}
+
+.backBag {
+    position: absolute;
+    left: 1%;
+    top: 2%;
+    width: 10%;
+    height: 10%;
+}
+
+.potionIMG{
+    position: absolute;
+    width: 10%;
+    height: 19%;
+    top: 0;
+    left: 1%;
+}
+
+.maxPotionName {
+    position: absolute;
+    left: 15% ;
+    top: -10%;
+}
+
+.btnUse {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+}
