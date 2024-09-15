@@ -4,5 +4,8 @@
  <img width="" height="" src="/images/Gif da batalha.gif">
 </p>
 
-## 🖥️Tecnologia utilizada
+## 🖥️Tecnologia utilizada:
 - [VUE.js](https://vuejs.org)
+
+## 📫Contato:
+- [LinkedIn](https://www.linkedin.com/in/hugo-lourenço-437a71265/)
