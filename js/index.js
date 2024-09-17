@@ -34,6 +34,7 @@ createApp({
             potion: true, // Contador da potion
             battle: 0, // Contador de turno de batalha
             runn: false, // Verificador de fuga
+            
             moveStats: {
                 name: "",
                 pp: null,
@@ -315,7 +316,7 @@ createApp({
         },
     },
 
-    computed: {
+    computed: {      
         lifeBarColorPoke() {
             if (this.pokemon.percent <= 10) {
                 return "#a1382a"
