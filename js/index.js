@@ -146,9 +146,9 @@ createApp({
         usePotion() {
             this.bagStatus = false
             this.potion = false
-            this.pokemon.life = 351
+            this.pokemon.life = this.pokemon.maxLife
             this.pokemon.percent = 99
-            this.battle += 1
+            this.battle ++
             this.pokemon.move = "potion"
             this.buttonSound()
         },
