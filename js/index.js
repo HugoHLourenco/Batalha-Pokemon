@@ -80,15 +80,6 @@ createApp({
                 modDef: 1,
             },
 
-            recover: {
-                name: 'Recover',
-                pp: 10,
-                type: "Normal",
-                db: 0,
-                modAtk: 1,
-                modDef: 1,
-            },
-
             dragonClaw: {
                 name: 'Dragon Claw',
                 pp: 15,
@@ -112,8 +103,8 @@ createApp({
                 pp: 20,
                 type: "Psychic",
                 db: 0,
-                modAtk: 1.25,
-                modDef: 1.25,
+                modAtk: 1.2,
+                modDef: 1.2,
             },
         }
     },
