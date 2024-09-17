@@ -34,7 +34,7 @@ createApp({
             potion: true, // Contador da potion
             battle: 0, // Contador de turno de batalha
             runn: false, // Verificador de fuga
-            
+
             moveStats: {
                 name: "",
                 pp: null,
@@ -104,13 +104,13 @@ createApp({
                 pp: 20,
                 type: "Psychic",
                 db: 0,
-                modAtk: 1.2,
-                modDef: 1.2,
+                modAtk: 1.1,
+                modDef: 1.1,
             },
         }
     },
     methods: {
-    // Botões --------------------------------------------------------------------------------
+        // Botões --------------------------------------------------------------------------------
 
         // Som do botão ------------------------------------------------------------------------------------
         buttonSound() {
@@ -149,8 +149,8 @@ createApp({
             this.potion = false
             this.pokemon.life = this.pokemon.maxLife
             this.pokemon.percent = 99
-            this.battle ++
-            this.pokemon.move = "potion"
+            this.battle++
+            this.pokemon.move = "Max potion"
             this.buttonSound()
         },
 
@@ -159,7 +159,7 @@ createApp({
             if (this.oponent.life === 0) {
                 this.battle = 6
             } else {
-                this.battle ++
+                this.battle++
                 this.ia()
                 if (this.battle === 4) {
                     this.battle = 0
@@ -246,21 +246,43 @@ createApp({
         },
 
         // Oponent ataques --------------------------------------------------------------
-        ia() {
+        ia(name) {
             if (this.oponent.life <= (this.oponent.maxLife * 0.3)) {
                 this.attackRecover()
             } else {
-                var num = Math.floor(Math.random() * this.calms)
+                var num = Math.floor(Math.random() * 3)
+
                 switch (num) {
                     case 0:
-                        this.attackDragonClaw()
+                        this.moveStats = this.dragonClaw
                         break
                     case 1:
-                        this.attackShadowBall()
+                        this.moveStats = this.shadowBall
                         break
                     case 2:
-                        this.attackCalmMind()
+                        this.moveStats = this.calmMind
                         break
+                }
+
+                name = this.moveStats.name
+                const som = new Audio(`/MoveSounds/${name}.mp3`)
+                som.play()
+
+                if (this.moveStats.pp === 0) {
+                } else {
+                    this.moveStats.pp--
+    
+                    this.pokemon.life -= Math.floor(((this.oponent.attack / this.pokemon.defense) * this.moveStats.db))
+                    this.oponent.attack *= this.moveStats.modAtk
+                    this.oponent.defense *= this.moveStats.modDef
+    
+                    if (this.pokemon.life < 0) {
+                        this.pokemon.life = 0
+                    }
+    
+                    this.battle++
+                    this.oponent.move = this.moveStats.name
+                    this.calculaPercentPoke()
                 }
             }
         },
@@ -270,53 +292,14 @@ createApp({
             som.play()
 
             this.oponent.life += Math.floor(this.oponent.maxLife / 2)
-            
-            this.battle ++
+
+            this.battle++
             this.oponent.move = "Recover"
             this.calculaPercentOpo()
         },
-
-        attackCalmMind() {
-            const som = new Audio('/MoveSounds/calmMind.mp3')
-            som.play()
-
-            this.oponent.attack *= 1.25
-            this.oponent.defense *= 1.25
-            this.battle ++
-            this.calms = 2
-            this.oponent.move = "Calm mind"
-        },
-
-        attackShadowBall() {
-            const som = new Audio('/MoveSounds/shadowBall.mp3')
-            som.play()
-
-            this.pokemon.life -= Math.floor(((this.oponent.attack / this.pokemon.defense) * 80))
-            
-            if (this.pokemon.life <= 0) {
-                this.pokemon.life = 0
-            }
-            this.battle ++
-            this.oponent.move = "Shadow Ball"
-            this.calculaPercentPoke()
-        },
-
-        attackDragonClaw() {
-            const som = new Audio('/MoveSounds/dragonClaw.mp3')
-            som.play()
-
-            this.pokemon.life -= Math.floor(((this.oponent.attack / this.pokemon.defense) * 110))
-            
-            if (this.pokemon.life <= 0) {
-                this.pokemon.life = 0
-            }
-            this.battle ++
-            this.oponent.move = "Dragon Claw"
-            this.calculaPercentPoke()
-        },
     },
 
-    computed: {      
+    computed: {
         lifeBarColorPoke() {
             if (this.pokemon.percent <= 10) {
                 return "#a1382a"
