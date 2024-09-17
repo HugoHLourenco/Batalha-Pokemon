@@ -158,7 +158,7 @@ createApp({
             if (this.oponent.life === 0) {
                 this.battle = 6
             } else {
-                this.battle += 1
+                this.battle ++
                 this.ia()
                 if (this.battle === 4) {
                     this.battle = 0
@@ -227,7 +227,6 @@ createApp({
             }
 
             if (this.moveStats.pp === 0) {
-
             } else {
                 this.moveStats.pp--
 
