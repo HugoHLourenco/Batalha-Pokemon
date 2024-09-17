@@ -270,7 +270,7 @@ createApp({
 
             this.oponent.life += Math.floor(this.oponent.maxLife / 2)
             
-            this.battle += 1
+            this.battle ++
             this.oponent.move = "Recover"
             this.calculaPercentOpo()
         },
@@ -281,7 +281,7 @@ createApp({
 
             this.oponent.attack *= 1.25
             this.oponent.defense *= 1.25
-            this.battle += 1
+            this.battle ++
             this.calms = 2
             this.oponent.move = "Calm mind"
         },
@@ -295,7 +295,7 @@ createApp({
             if (this.pokemon.life <= 0) {
                 this.pokemon.life = 0
             }
-            this.battle += 1
+            this.battle ++
             this.oponent.move = "Shadow Ball"
             this.calculaPercentPoke()
         },
@@ -309,7 +309,7 @@ createApp({
             if (this.pokemon.life <= 0) {
                 this.pokemon.life = 0
             }
-            this.battle += 1
+            this.battle ++
             this.oponent.move = "Dragon Claw"
             this.calculaPercentPoke()
         },
