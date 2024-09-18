@@ -16,6 +16,10 @@
     <!-- Áudio -->
      <audio id="SoundTrack" src="/sounds/SPBD Cynthia.mp3" autoplay loop class="music"></audio>
 
+     <audio src="sounds/Game Over - Zelda (A Link to the Past) (mp3cut.net).mp3" v-if="battle === 7"></audio>
+
+     <audio src="sounds/Level Up Fanfare - Pokémon Red & Blue.mp3" v-else-if="battle === 6"></audio>
+
     <main>
         <div id="app">
 

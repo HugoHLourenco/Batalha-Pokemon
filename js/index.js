@@ -91,7 +91,7 @@ createApp({
             },
 
             shadowBall: {
-                name: 'ShadowBall',
+                name: 'Shadow Ball',
                 pp: 15,
                 type: "Ghost",
                 db: 80,
@@ -158,6 +158,7 @@ createApp({
         next() {
             if (this.oponent.life === 0) {
                 this.battle = 6
+                this.stopMusic()
             } else {
                 this.battle++
                 this.ia()
@@ -172,6 +173,7 @@ createApp({
         next2() {
             if (this.pokemon.life === 0) {
                 this.battle = 7
+                this.stopMusic()
             } else {
                 this.battle = 0
             }
@@ -326,6 +328,11 @@ createApp({
 
         calculaPercentOpo() {
             this.oponent.percent = ((this.oponent.life / this.oponent.maxLife) * 100)
+        },
+
+        stopMusic() {
+            var music = document.getElementById("SoundTrack")
+            music.stop()
         },
     }
 }).mount('#app')
