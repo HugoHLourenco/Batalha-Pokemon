@@ -247,7 +247,7 @@ createApp({
 
         // Oponent ataques --------------------------------------------------------------
         ia(name) {
-            if (this.oponent.life <= (this.oponent.maxLife * 0.3)) {
+            if (this.oponent.life <= (this.oponent.maxLife * 0.4)) {
                 this.attackRecover()
             } else {
                 var num = Math.floor(Math.random() * 3)
