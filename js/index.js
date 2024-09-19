@@ -3,7 +3,7 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            // Status do Pokemon ------------------------------------------------------------------------------------
+            // Status do Pokemon -----------------------------------------------------------------------
             pokemon: {
                 life: 351,
                 maxLife: 351,
@@ -15,7 +15,7 @@ createApp({
                 percent: 99,
             },
 
-            // Status do Oponent ------------------------------------------------------------------------------------
+            // Status do Oponent -------------------------------------------------------------------------
             oponent: {
                 life: 441,
                 maxLife: 441,
@@ -28,7 +28,6 @@ createApp({
             },
 
             // Variáveis -------------------------------------------------------------
-            calms: 3, //Contador do Calm Mind
             fighting: false, // Verficador se "fight" está ativo
             bagStatus: false, // Verficador se "bag" está ativa
             battling: false, // Verficador se estão batalhando
@@ -151,7 +150,7 @@ createApp({
             this.potion = false
             this.pokemon.life = this.pokemon.maxLife
             this.pokemon.percent = 99
-            this.battle++
+            this.battle ++
             this.pokemon.move = "Max potion"
             this.buttonSound()
         },
@@ -161,7 +160,7 @@ createApp({
             if (this.oponent.life === 0) {
                 this.battle = 6
             } else {
-                this.battle++
+                this.battle ++
                 this.ia()
                 if (this.battle === 4) {
                     this.battle = 0
@@ -230,6 +229,7 @@ createApp({
             }
 
             if (this.moveStats.pp === 0) {
+
             } else {
                 this.moveStats.pp--
 
@@ -249,11 +249,10 @@ createApp({
 
         // Oponent ataques --------------------------------------------------------------
         ia(name) {
-            if (this.oponent.life <= (this.oponent.maxLife * 0.4)) {
+            if (this.oponent.life <= (this.oponent.maxLife * 0.3)) {
                 this.attackRecover()
             } else {
                 var num = Math.floor(Math.random() * 3)
-
                 switch (num) {
                     case 0:
                         this.moveStats = this.dragonClaw
@@ -269,19 +268,20 @@ createApp({
                 name = this.moveStats.name
                 const som = new Audio(`/MoveSounds/${name}.mp3`)
                 som.play()
-
+    
                 if (this.moveStats.pp === 0) {
+    
                 } else {
                     this.moveStats.pp--
-
+    
                     this.pokemon.life -= Math.floor(((this.oponent.attack / this.pokemon.defense) * this.moveStats.db))
                     this.oponent.attack *= this.moveStats.modAtk
                     this.oponent.defense *= this.moveStats.modDef
-
+    
                     if (this.pokemon.life < 0) {
                         this.pokemon.life = 0
                     }
-
+    
                     this.battle++
                     this.oponent.move = this.moveStats.name
                     this.calculaPercentPoke()
@@ -294,8 +294,8 @@ createApp({
             som.play()
 
             this.oponent.life += Math.floor(this.oponent.maxLife / 2)
-
-            this.battle++
+            
+            this.battle ++
             this.oponent.move = "Recover"
             this.calculaPercentOpo()
         },

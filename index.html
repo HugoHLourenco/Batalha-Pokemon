@@ -14,21 +14,17 @@
     <img src="/images/draw-a-pixel-pokemon-battle-background.gif" alt="" class="battleGround">
 
     <!-- Áudio -->
-    <audio id="SoundTrack" src="/sounds/SPBD Cynthia.mp3" autoplay loop></audio>
-
-    <!-- <audio src="sounds/Game Over - Zelda (A Link to the Past) (mp3cut.net).mp3" v-if="battle === 7"></audio> -->
-
-    <!-- <audio src="sounds/Level Up Fanfare - Pokémon Red & Blue.mp3" v-else-if="battle === 6"></audio> -->
+     <audio id="SoundTrack" src="/sounds/SPBD Cynthia.mp3" autoplay loop class="music"></audio>
 
     <main>
         <div id="app">
+
             <!-- Div do oponent -->
             <div class="div-oponent">
                 <h1 class="oponent-name">{{oponent.name}}</h1>
                 <div class="oponent-life">{{oponent.life}} / {{oponent.maxLife}}</div>
                 <div class="oponent-life-back">
-                    <div class="oponent-life-bar"
-                        :style="{width: oponent.percent + '%', backgroundColor: lifeBarColorOpo}"></div>
+                    <div class="oponent-life-bar" :style="{width: oponent.percent + '%', backgroundColor: lifeBarColorOpo}"></div>
                 </div>
             </div>
 
@@ -40,8 +36,7 @@
                 <h1 class="pokemon-name">{{pokemon.name}}</h1>
                 <div class="pokemon-life"> {{pokemon.life}} / {{pokemon.maxLife}} </div>
                 <div class="pokemon-life-back">
-                    <div class="pokemon-life-bar"
-                        :style="{width: pokemon.percent + '%', backgroundColor: lifeBarColorPoke}"></div>
+                    <div class="pokemon-life-bar" :style="{width: pokemon.percent + '%', backgroundColor: lifeBarColorPoke}"></div>
                 </div>
             </div>
 
@@ -59,16 +54,12 @@
             <!-- Ataques -->
             <div class="moves" v-if="fighting">
                 <div class="buttons">
-                    <button class="btnAct" :disabled="bagStatus" @click="attack('thunder')"
-                        @mouseover="showPP('thunder')" @mouseleave="clearDiv()">Thunder</button>
-                    <button class="btnAct" :disabled="bagStatus" @click="attack('twister')"
-                        @mouseover="showPP('twister')" @mouseleave="clearDiv()">Twister</button>
-                    <button class="btnAct" :disabled="bagStatus" @click="attack('crunch')" @mouseover="showPP('crunch')"
-                        @mouseleave="clearDiv()">Crunch</button>
-                    <button class="btnAct" :disabled="bagStatus" @click="attack('bulkUp')" @mouseover="showPP('bulkUp')"
-                        @mouseleave="clearDiv()">Bulk Up</button>
+                    <button class="btnAct" :disabled="bagStatus" @click="attack('thunder')" @mouseover="showPP('thunder')" @mouseleave="clearDiv()">Thunder</button>
+                    <button class="btnAct" :disabled="bagStatus" @click="attack('twister')" @mouseover="showPP('twister')" @mouseleave="clearDiv()">Twister</button>
+                    <button class="btnAct" :disabled="bagStatus" @click="attack('crunch')" @mouseover="showPP('crunch')" @mouseleave="clearDiv()">Crunch</button>
+                    <button class="btnAct" :disabled="bagStatus" @click="attack('bulkUp')" @mouseover="showPP('bulkUp')" @mouseleave="clearDiv()">Bulk Up</button>
                 </div>
-
+            
                 <!-- Div de PP e Type -->
                 <div class="attackStats">
                     PP: {{moveStats.pp}} <br>
@@ -79,7 +70,7 @@
             <!-- Div da Bag -->
             <div class="bag" v-if="bagStatus">
                 <h1 class="textBag">BAG</h1>
-                <button class="backBag" @click="bag()"><< /button>
+                <button class="backBag" @click="bag()"><</button>
                         <div class="subBag" v-if="potion">
                             <h1>
                                 <img src="/images/maxPotion.png" alt="" class="potionIMG">
@@ -103,7 +94,7 @@
             </div>
 
             <!-- console -->
-            <div class="console" v-if="battle === 1">
+            <div class="console" v-if ="battle === 1">
                 {{pokemon.name}} used {{pokemon.move}}.
                 <button class="btnNext" @click="next()">></button>
             </div>
@@ -130,7 +121,7 @@
                     <button class="btnRestart" @click="btnRestart()">Restart</button>
                 </div>
             </div>
-
+            
             <!-- Run -->
             <div class="console" v-if="runn">
                 Got away safety!
@@ -144,6 +135,8 @@
             </div>
         </div>
     </main>
+
+
 </body>
 
 </html>
@@ -154,7 +147,7 @@
 <!-- Método que abaixa o volume -->
 <script>
     window.onload = () => {
-        var audio = document.getElementById("SoundTrack")
-        audio.volume = 0.2
+      var audio = document.getElementById("SoundTrack")
+      audio.volume = 0.2
     }
 </script>
