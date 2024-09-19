@@ -15,7 +15,7 @@ createApp({
                 percent: 99,
             },
 
-             // Status do Oponent ------------------------------------------------------------------------------------
+            // Status do Oponent ------------------------------------------------------------------------------------
             oponent: {
                 life: 441,
                 maxLife: 441,
@@ -275,15 +275,15 @@ createApp({
                 if (this.moveStats.pp === 0) {
                 } else {
                     this.moveStats.pp--
-    
+
                     this.pokemon.life -= Math.floor(((this.oponent.attack / this.pokemon.defense) * this.moveStats.db))
                     this.oponent.attack *= this.moveStats.modAtk
                     this.oponent.defense *= this.moveStats.modDef
-    
+
                     if (this.pokemon.life < 0) {
                         this.pokemon.life = 0
                     }
-    
+
                     this.battle++
                     this.oponent.move = this.moveStats.name
                     this.calculaPercentPoke()
