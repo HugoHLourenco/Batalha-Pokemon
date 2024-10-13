@@ -348,6 +348,10 @@ button:active {
 .btnUse {
     position: absolute;
     right: 5%;
-    top: 5%;
-    
+    top: 5%; 
 }
+
+.dragon {color: #0a3d66;}
+.dark {color: #050909;}
+.fighting {color: #4d1b0b;}
+.electric {color: rgb(234, 237, 15)}

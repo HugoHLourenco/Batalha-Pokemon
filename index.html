@@ -37,7 +37,8 @@
                 <h1 class="pokemon-name">{{pokemon.name}}</h1>
                 <div class="pokemon-life"> {{pokemon.life}} / {{pokemon.maxLife}} </div>
                 <div class="pokemon-life-back">
-                    <div class="pokemon-life-bar" :style="{width: pokemon.percent + '%', backgroundColor: lifeBarColorPoke}"></div>
+                    <!--                                                             -->
+                    <div class="pokemon-life-bar" :style="{width: pokemon.percent + '%', backgroundColor: lifeBarColorPoke}"></div>   
                 </div>
             </div>
 
@@ -62,7 +63,7 @@
                 </div>
             
                 <!-- Div de PP e Type -->
-                <div class="attackStats">
+                <div class="attackStats" :style="{}">
                     PP: {{moveStats.pp}} <br>
                     Type/ {{moveStats.type}}
                 </div>
